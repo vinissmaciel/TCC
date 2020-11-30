@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatório de cliente" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="700cdd53-c6f3-4b67-bee4-0ae55ec8db14">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT  c.nome AS Cliente, p.nome AS Produto, SUM(iv.quantidade_comprada) AS qtd, p.unidade as unidade
+FROM cliente c
+LEFT JOIN item_venda iv ON iv.id_cliente = c.id
+INNER JOIN estoque e ON e.id = iv.id_estoque
+INNER JOIN produto p ON p.id = e.ID_produto 
+GROUP BY iv.id_cliente, iv.id_estoque
+ORDER BY iv.id_cliente, SUM(iv.quantidade_comprada) DESC;]]>
+	</queryString>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="Produto" class="java.lang.String"/>
+	<field name="qtd" class="java.lang.Double"/>
+	<field name="unidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="79" uuid="c02ae1aa-2aae-4b31-9033-8b3f1f70cbd5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Relatório de produtos comprados por cliente]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="552" height="20" uuid="f1236f20-ecb5-4d23-9a28-3a96a29f0ab2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="20" uuid="6565bbb9-cb5b-4e12-9ccb-62d2bc1f24de"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="138" height="20" uuid="11b3c158-267c-4be4-b73c-586bbbe587f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Produto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="138" height="20" uuid="41d8bc12-e751-4fee-972b-2434a3faf6ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Quantidade Comprada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="138" height="20" uuid="bc886b97-b2b7-4480-95d5-faa948d590a6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Unidade]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="552" height="20" uuid="e7f3ec69-6ee4-459c-a291-423b1a3a9d6a"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="138" height="20" uuid="21499015-427e-4d86-aa36-a214e3b9b558"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="138" height="20" uuid="c66ebc53-9022-47d8-81a5-4d3f3b76723c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Produto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="138" height="20" uuid="bc3c17dd-f5d6-48b6-83b0-fbba908cbfbc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{qtd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="138" height="20" uuid="17b697c8-5512-4364-aaea-99fca16f280c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{unidade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
