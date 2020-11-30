@@ -251,6 +251,7 @@ boolean clicou = false;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar a edição do fornecedor?", "Atenção",JOptionPane.YES_NO_OPTION);
         if(confirmar==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Edição cancelada");
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed

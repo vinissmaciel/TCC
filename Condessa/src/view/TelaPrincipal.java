@@ -12,10 +12,10 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Database;
-/*import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JasperViewer;*/
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -266,7 +266,7 @@ ResultSet rs = null;
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       String src = "C:\\Users\\Leonardo\\Documents\\TCC\\Condessa\\Relatórios\\Relatório de vendas.jasper";
+       String src = "C:\\Users\\Vinícius\\Documents\\GitHub\\TCC\\Condessa\\Relatórios\\Relatório de vendas.jasper";
         JasperPrint jaspertprint = null;
     try {
         jaspertprint = JasperFillManager.fillReport(src,null,conexao);
@@ -278,7 +278,7 @@ ResultSet rs = null;
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-String src = "C:\\Users\\Leonardo\\Documents\\TCC\\Condessa\\Relatórios\\Relatório de estoque.jasper";
+String src = "C:\\Users\\Vinícius\\Documents\\GitHub\\TCC\\Condessa\\Relatórios\\Relatório de estoque.jasper";
         JasperPrint jaspertprint = null;
     try {
         jaspertprint = JasperFillManager.fillReport(src,null,conexao);
@@ -302,7 +302,7 @@ String src = "C:\\Users\\Leonardo\\Documents\\TCC\\Condessa\\Relatórios\\Relat�
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        String src = "C:\\Users\\Leonardo\\Documents\\TCC\\Condessa\\Relatórios\\Relatório de cliente.jasper";
+        String src = "C:\\Users\\Vinícius\\Documents\\GitHub\\TCC\\Condessa\\Relatórios\\Relatório de cliente.jasper";
         JasperPrint jaspertprint = null;
     try {
         jaspertprint = JasperFillManager.fillReport(src,null,conexao);

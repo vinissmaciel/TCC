@@ -90,7 +90,7 @@ ResultSet rs = null;
             pst.executeUpdate();
             //mensagem para o usuario
             updateproduto();
-            JOptionPane.showMessageDialog(null, "Estoque excluído com sucesso");
+            JOptionPane.showMessageDialog(null, "Estoque excluido com sucesso");
             pst.close();
             conexao.close();
             //fechando a conexao e o banco
@@ -287,7 +287,11 @@ ResultSet rs = null;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar a exclusão do estoque?", "Atenção",JOptionPane.YES_NO_OPTION);
+        if(confirmar==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Exclusão cancelada");
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -302,14 +306,11 @@ ResultSet rs = null;
     if(jLabel10.getText().equals("-")){
         JOptionPane.showMessageDialog(null, "Pesquise o produto no estoque");
     }else{
-    int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este o produto do estoque?", "Atenção",JOptionPane.YES_NO_OPTION);
-        if(confirmar==JOptionPane.YES_OPTION){
-            try {
-                deleteestoque();
-            } catch (SQLException ex) {
-                Logger.getLogger(TelaExcluirMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
+    try {
+        deleteestoque();
+        this.dispose();
+    } catch (SQLException ex) {
+        Logger.getLogger(TelaExcluirEstoque.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
     }//GEN-LAST:event_jButton4ActionPerformed

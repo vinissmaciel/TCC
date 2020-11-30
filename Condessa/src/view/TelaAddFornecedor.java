@@ -78,11 +78,11 @@ ResultSet rs = null;
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         Nome_forn = new javax.swing.JTextField();
+        Cnpj_forn = new javax.swing.JTextField();
         Cid_forn = new javax.swing.JTextField();
         Con_forn = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        Cnpj_forn = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Adicionar fornecedor");
@@ -175,6 +175,7 @@ ResultSet rs = null;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar o cadastro?", "Atenção",JOptionPane.YES_NO_OPTION);
         if(confirmar==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Cadastro cancelado");
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed

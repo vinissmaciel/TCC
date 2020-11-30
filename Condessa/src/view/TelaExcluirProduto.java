@@ -237,21 +237,21 @@ ResultSet rs = null;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar a exclusão do produto?", "Atenção",JOptionPane.YES_NO_OPTION);
+        if(confirmar==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Exclusão cancelada");
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     if(ex_nomeProd.getText().equals("-")){
         JOptionPane.showMessageDialog(null, "Pesquise o produto");
     }else{
-    int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este produto?", "Atenção",JOptionPane.YES_NO_OPTION);
-        if(confirmar==JOptionPane.YES_OPTION){
-            try {
-                DeleteProduto();
-            } catch (SQLException ex) {
-                Logger.getLogger(TelaExcluirMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
+    try {
+        DeleteProduto();
+    } catch (SQLException ex) {
+        Logger.getLogger(TelaExcluirProduto.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
     }//GEN-LAST:event_jButton2ActionPerformed

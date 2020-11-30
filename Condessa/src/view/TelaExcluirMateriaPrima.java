@@ -60,7 +60,6 @@ ResultSet rs = null;
                 ex_qtd_mp.setText(""+rs.getInt("m.quantidade"));
                 ex_forn_mp.setText(rs.getString("f.nome"));
                 ex_lote_mp.setText(""+rs.getInt("m.lote"));
-                ex_preco_mp.setText(""+rs.getDouble("m.preco"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TelaEditarProduto.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,7 +72,7 @@ ResultSet rs = null;
                 pst = conexao.prepareStatement(sql);
             //executando o banco
                 pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Materia Prima excluída com sucesso");
+                JOptionPane.showMessageDialog(null, "Materia Prima deletada com sucesso");
                 this.dispose();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Materia Prima não pode ser excluída");
@@ -111,8 +110,6 @@ ResultSet rs = null;
         ex_lote_mp = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         ex_forn_mp = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        ex_preco_mp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Excluir Materia Prima");
@@ -163,20 +160,10 @@ ResultSet rs = null;
 
         ex_forn_mp.setText("-");
 
-        jLabel5.setText("Preço:");
-
-        ex_preco_mp.setText("-");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,29 +173,31 @@ ResultSet rs = null;
                         .addComponent(jButton3)
                         .addGap(54, 54, 54))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ex_nome_mp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ex_qtd_mp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ex_forn_mp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ex_preco_mp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel7)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ex_lote_mp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(ex_lote_mp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ex_nome_mp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ex_qtd_mp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(17, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,23 +212,19 @@ ResultSet rs = null;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(ex_nome_mp))
-                .addGap(28, 28, 28)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(ex_qtd_mp))
-                .addGap(31, 31, 31)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ex_forn_mp))
-                .addGap(33, 33, 33)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(ex_lote_mp))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(ex_preco_mp))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -251,22 +236,21 @@ ResultSet rs = null;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar a exclusão da materia prima?", "Atenção",JOptionPane.YES_NO_OPTION);
+        if(confirmar==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Exclusão cancelada");
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     if(ex_nome_mp.getText().equals("-")){
-        JOptionPane.showMessageDialog(null, "Pesquise a matéria-prima");
+        JOptionPane.showMessageDialog(null, "Pesquise a materia prima");
     }else{
-    int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir esta matéria-prima?", "Atenção",JOptionPane.YES_NO_OPTION);
-        if(confirmar==JOptionPane.YES_OPTION){
-            JOptionPane.showMessageDialog(null, "Matéria-prima excluida");
-            try {
-                DeleteMateriaPrima();
-            } catch (SQLException ex) {
-                Logger.getLogger(TelaExcluirMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
+    try {
+        DeleteMateriaPrima();
+    } catch (SQLException ex) {
+        Logger.getLogger(TelaExcluirMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -327,7 +311,6 @@ ResultSet rs = null;
     private javax.swing.JLabel ex_lote_mp;
     private javax.swing.JComboBox<String> ex_mp;
     private javax.swing.JLabel ex_nome_mp;
-    private javax.swing.JLabel ex_preco_mp;
     private javax.swing.JLabel ex_qtd_mp;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -336,7 +319,6 @@ ResultSet rs = null;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

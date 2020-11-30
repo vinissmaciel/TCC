@@ -173,11 +173,6 @@ ResultSet rs = null;
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        Cpf_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Cpf_cliActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -282,6 +277,7 @@ ResultSet rs = null;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar o cadastro?", "Atenção",JOptionPane.YES_NO_OPTION);
         if(confirmar==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Cadastro cancelado");
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -327,10 +323,6 @@ ResultSet rs = null;
     private void Cep_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cep_cliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Cep_cliActionPerformed
-
-    private void Cpf_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cpf_cliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Cpf_cliActionPerformed
 
     /**
      * @param args the command line arguments

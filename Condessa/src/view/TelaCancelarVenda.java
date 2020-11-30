@@ -292,13 +292,10 @@ ResultSet rs = null;
         if(jLabel1.getText().equals("-")){
             JOptionPane.showMessageDialog(null, "Por favor, pesquise uma venda");
         }else{
-        int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar esta venda?", "Atenção",JOptionPane.YES_NO_OPTION);
-            if(confirmar==JOptionPane.YES_OPTION){
-                Cancelaritem_Venda();
-                CancelarVenda();
-                JOptionPane.showMessageDialog(null, "Venda cancelada com sucesso");
-                this.dispose();
-            }
+            Cancelaritem_Venda();
+            CancelarVenda();
+            JOptionPane.showMessageDialog(null, "Venda cancelada com sucesso");
+            this.dispose();
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed

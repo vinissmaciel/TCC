@@ -65,9 +65,9 @@ public class TelaExcluirFornecedor extends javax.swing.JFrame {
             rs = pst.executeQuery(sql);
             while(rs.next()){
                 ex_noforn.setText(rs.getString("nome"));
-                ex_cnpj.setText(""+rs.getInt("cnpj"));
+                ex_cnpj.setText(""+rs.getString("cnpj"));
                 ex_cidforn.setText(rs.getString("cidade"));
-                ex_con.setText(""+rs.getInt("contato"));
+                ex_con.setText(""+rs.getString("contato"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TelaExcluirFornecedor.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,7 +79,7 @@ public class TelaExcluirFornecedor extends javax.swing.JFrame {
         try {
             pst = conexao.prepareStatement(sql);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Fornecedor excluído com sucesso");
+            JOptionPane.showMessageDialog(null, "Fornecedor excluido com sucesso");
             pst.close();
             conexao.close();
             this.dispose();
@@ -241,20 +241,20 @@ public class TelaExcluirFornecedor extends javax.swing.JFrame {
         if(ex_noforn.getText().equals("-")){
             JOptionPane.showMessageDialog(null, "Pesquise o Fornecedor");
         }else{
-        int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este fornecedor?", "Atenção",JOptionPane.YES_NO_OPTION);
-        if(confirmar==JOptionPane.YES_OPTION){
-            try {
-                DeleteFornecedor();
-            } catch (SQLException ex) {
-                Logger.getLogger(TelaExcluirMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
-    }
+        try {
+            DeleteFornecedor();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaExcluirCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar a exclusão da materia prima?", "Atenção",JOptionPane.YES_NO_OPTION);
+        if(confirmar==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Exclusão cancelada");
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

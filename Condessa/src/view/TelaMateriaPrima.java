@@ -24,7 +24,7 @@ PreparedStatement pst = null;
 ResultSet rs = null;
 
 public void MostrarMateriaPrima(){
-    String sql = "SELECT m.lote, m.nome, m.quantidade, m.preco, f.nome FROM materiaprima m INNER JOIN fornecedor f ON m.id_fornecedor = f.id";
+    String sql = "SELECT m.lote, m.nome, m.quantidade, f.nome FROM materiaprima m INNER JOIN fornecedor f ON m.id_fornecedor = f.id";
         try {
            pst = conexao.prepareStatement(sql);
            rs = pst.executeQuery(sql);
@@ -37,7 +37,6 @@ public void MostrarMateriaPrima(){
                   rs.getString("m.nome"),
                   rs.getInt("m.quantidade"),
                   rs.getString("f.nome"),
-                  rs.getDouble("m.preco"),
               });
           }
          pst.close();
@@ -118,14 +117,14 @@ public void MostrarMateriaPrima(){
 
             },
             new String [] {
-                "Lote", "Nome", "Quantidade", "Fornecedor", "Preço"
+                "Lote", "Nome", "Quantidade", "Fornecedor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

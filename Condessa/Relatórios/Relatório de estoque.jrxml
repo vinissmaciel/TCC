@@ -11,22 +11,22 @@ LEFT JOIN item_venda iv ON iv.id_estoque = es.id
 GROUP BY p.nome
 ORDER BY SUM(iv.quantidade_comprada) DESC;]]>
 	</queryString>
-	<field name="nome" class="java.lang.String">
+	<field name="Nome" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="preco" class="java.math.BigDecimal">
+	<field name="Preço Uni." class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="quantidade" class="java.lang.Double">
+	<field name="Qtd. estoque" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="unidade" class="java.lang.String">
+	<field name="Unidade" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="quantidade_materiaprima" class="java.lang.Double">
+	<field name="Qtd. matéria" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="SUM(IFNULL(iv.quantidade_comprada, 0))" class="java.lang.Double"/>
+	<field name="Qtd. vendida" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -52,32 +52,32 @@ ORDER BY SUM(iv.quantidade_comprada) DESC;]]>
 			<staticText>
 				<reportElement x="0" y="0" width="92" height="20" uuid="a735cea5-6ad5-4dac-b187-8f4f2d8b62e3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[nome]]></text>
+				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="184" y="0" width="92" height="20" uuid="b829d348-74d0-44bd-a2f5-76b3130a5b66"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[quantidade]]></text>
+				<text><![CDATA[Qtd. estoque]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="276" y="0" width="92" height="20" uuid="7d20907a-d653-47d7-b919-cde56a417026"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[unidade]]></text>
+				<text><![CDATA[Unidade]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="368" y="0" width="92" height="20" uuid="c7217d0d-c168-4770-99f7-94c2113f027d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[quantidade_materiaprima]]></text>
+				<text><![CDATA[Qtd. matéria]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="460" y="0" width="92" height="20" uuid="be017726-5da0-497b-9445-0e8c78314139"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[SUM(IFNULL(iv.quantidade_comprada, 0))]]></text>
+				<text><![CDATA[Qnt. vendida]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="92" y="0" width="92" height="20" uuid="6787f73d-62ed-48f9-9371-c5745cc289df"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[preco]]></text>
+				<text><![CDATA[Preço Uni.]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

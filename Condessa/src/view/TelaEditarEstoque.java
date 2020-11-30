@@ -293,6 +293,7 @@ boolean clique = false;
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar a edição do estoque?", "Atenção",JOptionPane.YES_NO_OPTION);
         if(confirmar==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Edição cancelada");
             this.dispose();
         }
     }//GEN-LAST:event_jButton5ActionPerformed

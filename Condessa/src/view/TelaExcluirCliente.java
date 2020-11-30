@@ -133,7 +133,7 @@ ResultSet rs = null;
         ex_num = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel3.setText("Telefone:");
 
@@ -312,21 +312,21 @@ ResultSet rs = null;
     if(ex_no.getText().equals("-")){
         JOptionPane.showMessageDialog(null, "Pesquise um cliente");
     }else{
-    int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este cliente?", "Atenção",JOptionPane.YES_NO_OPTION);
-        if(confirmar==JOptionPane.YES_OPTION){
             try {
                 DeleteCliente();
             } catch (SQLException ex) {
-                Logger.getLogger(TelaExcluirMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaExcluirCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-            this.dispose();
-    }
     }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar a exclusão do cliente?", "Atenção",JOptionPane.YES_NO_OPTION);
+        if(confirmar==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Exclusão cancelada");
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

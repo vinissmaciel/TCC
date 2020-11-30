@@ -85,7 +85,7 @@ boolean click = false;
     }
     
     public void MostrarMateriaPrima() throws SQLException{
-        String sql = "select m.nome,m.quantidade, m.preco,f.nome from materiaprima m inner join fornecedor f on m.id_fornecedor = f.id where lote = '" + pegarIdMateriaPrima() + "'";
+        String sql = "select m.nome,m.quantidade,f.nome from materiaprima m inner join fornecedor f on m.id_fornecedor = f.id where lote = '" + pegarIdMateriaPrima() + "'";
         try {
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery(sql);
@@ -93,7 +93,6 @@ boolean click = false;
                 ed_nomeMat.setText(rs.getString("m.nome"));
                 ed_qtdMat.setText(""+rs.getInt("m.quantidade"));
                 ed_fornMat.setSelectedItem(rs.getString("f.nome"));
-                ed_precoMat.setText(""+rs.getDouble("m.preco"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TelaEditarProduto.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,7 +101,7 @@ boolean click = false;
 
     public void UpdateMateriaPrima() throws SQLException{
         String sql = "update materiaprima set nome = '" + ed_nomeMat.getText() + "', quantidade = '" + ed_qtdMat.getText() + 
-                 "',id_fornecedor = '" + pegarIdFornecedor() + "',preco = '" + Double.parseDouble(ed_precoMat.getText()) +
+                 "',id_fornecedor = '" + pegarIdFornecedor() + 
                 "'   where lote = '" +pegarIdMateriaPrima() + "'";
         
 
@@ -151,8 +150,6 @@ boolean click = false;
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         ed_fornMat = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        ed_precoMat = new javax.swing.JTextField();
 
         jScrollPane1.setViewportView(jTree1);
 
@@ -200,14 +197,6 @@ boolean click = false;
             }
         });
 
-        jLabel4.setText("Preço");
-
-        ed_precoMat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ed_precoMatActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -229,14 +218,12 @@ boolean click = false;
                                 .addGap(160, 160, 160))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(54, 54, 54)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4)
-                                    .addComponent(ed_fornMat, 0, 216, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ed_fornMat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jButton1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton2))
-                                    .addComponent(ed_precoMat)))))
+                                        .addComponent(jButton2))))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Ed_Mat, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
@@ -261,13 +248,9 @@ boolean click = false;
                     .addComponent(ed_nomeMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ed_fornMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ed_qtdMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ed_precoMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(ed_qtdMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -282,6 +265,7 @@ boolean click = false;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar a edição da materia prima?", "Atenção",JOptionPane.YES_NO_OPTION);
         if(confirmar==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Edição cancelada");
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -323,10 +307,6 @@ boolean click = false;
         Logger.getLogger(TelaEditarMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void ed_precoMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ed_precoMatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ed_precoMatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -372,7 +352,6 @@ boolean click = false;
     private javax.swing.JComboBox<String> Ed_Mat;
     private javax.swing.JComboBox<String> ed_fornMat;
     private javax.swing.JTextField ed_nomeMat;
-    private javax.swing.JTextField ed_precoMat;
     private javax.swing.JTextField ed_qtdMat;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -380,7 +359,6 @@ boolean click = false;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
