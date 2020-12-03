@@ -17,4 +17,8 @@ public class ListaEstoque {
     public void adicionar(Estoque e){
         listaestoque.add(e);
     }
+    
+    public void limpar(){
+        listaestoque.clear();
+    }
 }

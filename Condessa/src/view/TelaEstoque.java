@@ -25,7 +25,7 @@ ResultSet rs = null;
 
 
 public void MostrarEstoque(){
-    String sql = "SELECT e.quantidade, m.nome, p.nome, e.quantidade_materiaprima FROM estoque e INNER JOIN materiaprima m on e.LOTE_materia = m.lote INNER JOIN produto p on e.ID_produto= p.id";
+    String sql = "SELECT e.quantidade, m.lote, p.nome, e.quantidade_materiaprima FROM estoque e INNER JOIN materiaprima m on e.LOTE_materia = m.lote INNER JOIN produto p on e.ID_produto= p.id";
         try {
            pst = conexao.prepareStatement(sql);
            rs = pst.executeQuery(sql);
@@ -36,7 +36,7 @@ public void MostrarEstoque(){
               {
                   rs.getString("p.nome"),
                   rs.getDouble("e.quantidade"),
-                  rs.getString("m.nome"),
+                  rs.getInt("m.lote"),
                   rs.getDouble("e.quantidade_materiaprima"),
               });
           }
@@ -181,7 +181,7 @@ public void MostrarEstoque(){
 
             },
             new String [] {
-                "Nome do produto", "Quantidade do estoque", "Matéria-prima", "Quantidade de matéria prima"
+                "Nome do produto", "Quantidade do estoque", "Lote da Matéria-prima", "Quantidade de matéria prima"
             }
         ) {
             Class[] types = new Class [] {

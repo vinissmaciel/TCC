@@ -73,7 +73,7 @@ ResultSet rs = null;
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar produto");
 
         Nome_prod.addActionListener(new java.awt.event.ActionListener() {

@@ -26,12 +26,12 @@ short clique = 0;
 boolean click = false;
 
     public void listarMateriaPrima(){
-            String sql="select nome from materiaprima";
+            String sql="select lote from materiaprima";
             try {
                 pst = conexao.prepareStatement(sql);
                 rs = pst.executeQuery(sql);
                 while(rs.next()){
-                    Ed_Mat.addItem(rs.getString("nome"));
+                    Ed_Mat.addItem(""+rs.getInt("lote"));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(TelaAddVenda.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,7 +53,7 @@ boolean click = false;
     } 
     
     public int pegarIdMateriaPrima() throws SQLException{
-        String sql = "select lote from materiaprima where nome = '" + Ed_Mat.getSelectedItem().toString() + "'";
+        String sql = "select lote from materiaprima where lote = '" + Integer.parseInt(Ed_Mat.getSelectedItem().toString()) + "'";
         try{
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery(sql);
@@ -85,13 +85,14 @@ boolean click = false;
     }
     
     public void MostrarMateriaPrima() throws SQLException{
-        String sql = "select m.nome,m.quantidade,f.nome from materiaprima m inner join fornecedor f on m.id_fornecedor = f.id where lote = '" + pegarIdMateriaPrima() + "'";
+        String sql = "select m.nome,m.quantidade,f.nome,m.preco from materiaprima m inner join fornecedor f on m.id_fornecedor = f.id where lote = '" + pegarIdMateriaPrima() + "'";
         try {
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery(sql);
             while(rs.next()){
                 ed_nomeMat.setText(rs.getString("m.nome"));
                 ed_qtdMat.setText(""+rs.getInt("m.quantidade"));
+                jTextField1.setText(""+rs.getDouble("m.preco"));
                 ed_fornMat.setSelectedItem(rs.getString("f.nome"));
             }
         } catch (SQLException ex) {
@@ -101,7 +102,7 @@ boolean click = false;
 
     public void UpdateMateriaPrima() throws SQLException{
         String sql = "update materiaprima set nome = '" + ed_nomeMat.getText() + "', quantidade = '" + ed_qtdMat.getText() + 
-                 "',id_fornecedor = '" + pegarIdFornecedor() + 
+                 "', preco = '" + Double.parseDouble(jTextField1.getText()) + "', id_fornecedor = '" + pegarIdFornecedor() + 
                 "'   where lote = '" +pegarIdMateriaPrima() + "'";
         
 
@@ -109,7 +110,7 @@ boolean click = false;
                 pst = conexao.prepareStatement(sql);
             //executando o banco
                 pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso");
+                JOptionPane.showMessageDialog(null, "Matéria-Prima atualizada com sucesso");
                 this.dispose();
             } catch (SQLException ex) {
                 Logger.getLogger(TelaAddVenda.class.getName()).log(Level.SEVERE, null, ex);
@@ -150,10 +151,12 @@ boolean click = false;
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         ed_fornMat = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         jScrollPane1.setViewportView(jTree1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Materia Prima");
 
         jLabel2.setText("Fornecedor");
@@ -180,7 +183,7 @@ boolean click = false;
             }
         });
 
-        jLabel7.setText("Selecione a matéria prima");
+        jLabel7.setText("Selecione o lote da matéria-Prima");
 
         Ed_Mat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,6 +199,8 @@ boolean click = false;
                 jButton3ActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("Preço");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,12 +223,14 @@ boolean click = false;
                                 .addGap(160, 160, 160))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(54, 54, 54)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ed_fornMat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4)
+                                    .addComponent(ed_fornMat, 0, 216, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jButton1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton2))))))
+                                        .addComponent(jButton2))
+                                    .addComponent(jTextField1)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Ed_Mat, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
@@ -248,9 +255,13 @@ boolean click = false;
                     .addComponent(ed_nomeMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ed_fornMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ed_qtdMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ed_qtdMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -271,7 +282,7 @@ boolean click = false;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    if(ed_nomeMat.getText().isEmpty() || ed_qtdMat.getText().isEmpty()){
+    if(ed_nomeMat.getText().isEmpty() || ed_qtdMat.getText().isEmpty() || jTextField1.getText().isEmpty()){
         JOptionPane.showMessageDialog(null, "Preencha os campos corretamente");
     }else{
         if(!click){
@@ -359,8 +370,10 @@ boolean click = false;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }

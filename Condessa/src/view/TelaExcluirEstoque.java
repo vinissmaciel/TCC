@@ -69,13 +69,13 @@ ResultSet rs = null;
     }
     
     public void mostrarestoque() throws SQLException{
-        String sql = "select e.quantidade, mp.nome from estoque e inner join materiaprima mp on mp.lote = e.LOTE_materia where e.id = '" + pegarIdEst() + "'";
+        String sql = "select e.quantidade, mp.lote from estoque e inner join materiaprima mp on mp.lote = e.LOTE_materia where e.id = '" + pegarIdEst() + "'";
         try {
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery(sql);
             while(rs.next()){
                 jLabel10.setText(""+rs.getDouble("e.quantidade"));
-                jLabel11.setText(rs.getString("mp.nome"));
+                jLabel11.setText(""+rs.getInt("mp.lote"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TelaAddEstoque.class.getName()).log(Level.SEVERE, null, ex);
@@ -182,7 +182,7 @@ ResultSet rs = null;
 
         jLabel5.setText("Selecione o nome do produto no estoque");
 
-        jLabel7.setText("Matéria-prima:");
+        jLabel7.setText("Lote da Matéria-prima:");
 
         jLabel8.setText("Quantidade do estoque do produto:");
 
@@ -235,7 +235,7 @@ ResultSet rs = null;
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()

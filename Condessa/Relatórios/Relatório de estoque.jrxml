@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatório de estoque" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c92643a9-f740-425c-8639-471b344fe6ee">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatório de Estoque" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2a1c9a0e-a01f-425e-86c6-46aa50aef778">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -9,31 +9,31 @@ FROM produto p
 INNER JOIN estoque es ON es.ID_produto = p.id
 LEFT JOIN item_venda iv ON iv.id_estoque = es.id
 GROUP BY p.nome
-ORDER BY SUM(iv.quantidade_comprada) DESC;]]>
+ORDER BY SUM(iv.quantidade_comprada) DESC]]>
 	</queryString>
-	<field name="Nome" class="java.lang.String">
+	<field name="nome" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Preço Uni." class="java.math.BigDecimal">
+	<field name="preco" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Qtd. estoque" class="java.lang.Double">
+	<field name="quantidade" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Unidade" class="java.lang.String">
+	<field name="unidade" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Qtd. matéria" class="java.lang.Double">
+	<field name="quantidade_materiaprima" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Qtd. vendida" class="java.lang.Double"/>
+	<field name="SUM(IFNULL(iv.quantidade_comprada, 0))" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="79" uuid="91318f98-c1dc-4389-8cc4-a221777d4cb0"/>
+				<reportElement x="0" y="0" width="555" height="79" uuid="895d201e-2fc9-4454-ac75-773e8d92cc0a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="24"/>
 				</textElement>
@@ -47,74 +47,74 @@ ORDER BY SUM(iv.quantidade_comprada) DESC;]]>
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="555" height="20" uuid="c53ed0ab-e5ca-4f79-a2f5-fba92605ccfa"/>
+				<reportElement x="0" y="0" width="552" height="20" uuid="693f0883-6796-4117-8048-d0343017b4e1"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="0" width="92" height="20" uuid="a735cea5-6ad5-4dac-b187-8f4f2d8b62e3"/>
+				<reportElement x="0" y="0" width="92" height="20" uuid="10a805a1-1703-4572-9f0a-97b1909ed85e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="184" y="0" width="92" height="20" uuid="b829d348-74d0-44bd-a2f5-76b3130a5b66"/>
+				<reportElement x="92" y="0" width="92" height="20" uuid="d9ae328e-2d2c-4c01-bf13-1a47043141c6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Qtd. estoque]]></text>
+				<text><![CDATA[Preço]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="276" y="0" width="92" height="20" uuid="7d20907a-d653-47d7-b919-cde56a417026"/>
+				<reportElement x="184" y="0" width="92" height="20" uuid="e1687d19-d59c-4e1b-8597-a4751d4bfe1f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Qtd estoque]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="92" height="20" uuid="26bc83fe-8529-46cb-9300-1ae1f72fd1fd"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Unidade]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="368" y="0" width="92" height="20" uuid="c7217d0d-c168-4770-99f7-94c2113f027d"/>
+				<reportElement x="368" y="0" width="92" height="20" uuid="00d2cda6-1ebf-4279-8efc-a4e0b3573b59"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Qtd. matéria]]></text>
+				<text><![CDATA[Qtd materia prima]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="460" y="0" width="92" height="20" uuid="be017726-5da0-497b-9445-0e8c78314139"/>
+				<reportElement x="460" y="0" width="92" height="20" uuid="dd1115ca-8420-41d1-80e1-99a5372485c6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Qnt. vendida]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="92" y="0" width="92" height="20" uuid="6787f73d-62ed-48f9-9371-c5745cc289df"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Preço Uni.]]></text>
+				<text><![CDATA[Qtd vendida]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="555" height="20" uuid="1ccc02c3-d136-4256-88c5-1be112e907f3"/>
+				<reportElement x="0" y="0" width="552" height="20" uuid="4bf2a687-0ccc-454d-b746-a3bc2c0b0984"/>
 			</rectangle>
 			<textField>
-				<reportElement x="92" y="0" width="92" height="20" uuid="a00c20f8-9cf5-42d1-b134-009d250e1197"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{preco}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="0" width="92" height="20" uuid="a2d7b7d7-7135-48e1-88b4-65dd7300745d"/>
+				<reportElement x="0" y="0" width="92" height="20" uuid="d3e15852-3bc3-4ae3-bb79-6a03590cacb8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="276" y="0" width="92" height="20" uuid="49da2540-13b7-4047-a78f-20f2f9f29438"/>
+				<reportElement x="92" y="0" width="92" height="20" uuid="822763d9-b37f-4f4a-8ddb-4abb0d6a4734"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{preco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="0" width="92" height="20" uuid="2ee8c18d-31ae-45f7-9730-09d4475c055a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="92" height="20" uuid="d308cebe-df43-4027-b005-f8aa1ca2e984"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{unidade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="368" y="0" width="92" height="20" uuid="e9d261a0-f23e-4601-8989-c47a9afe694c"/>
+				<reportElement x="368" y="0" width="92" height="20" uuid="6618d220-bd0f-48e0-8065-313365179002"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{quantidade_materiaprima}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="460" y="0" width="92" height="20" uuid="2341ccba-6d29-448c-a13c-a6e4a87b3a15"/>
+				<reportElement x="460" y="0" width="92" height="20" uuid="807e53bf-0bbd-400e-9e76-3d4c53e92b62"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{SUM(IFNULL(iv.quantidade_comprada, 0))}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="184" y="0" width="92" height="20" uuid="4e9a9cbd-d0c1-4236-9608-47375c65bb47"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

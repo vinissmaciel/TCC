@@ -230,7 +230,7 @@
               <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Nome do produto" type="java.lang.String"/>
                 <Column editable="false" title="Quantidade do estoque" type="java.lang.String"/>
-                <Column editable="false" title="Mat&#xe9;ria-prima" type="java.lang.String"/>
+                <Column editable="false" title="Lote da Mat&#xe9;ria-prima" type="java.lang.String"/>
                 <Column editable="false" title="Quantidade de mat&#xe9;ria prima" type="java.lang.Object"/>
               </Table>
             </Property>

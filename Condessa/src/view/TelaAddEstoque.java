@@ -25,17 +25,19 @@ ResultSet rs = null;
 
 
     public void listarMat(){
-        String sql="select nome from materiaprima";
+        String sql="select lote from materiaprima";
         try {
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery(sql);
             while(rs.next()){
-                Mat_est.addItem(rs.getString("nome"));
+                Mat_est.addItem(""+rs.getInt("lote"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TelaAddEstoque.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
     
         public void listarProd(){
         String sql="select nome from produto where sta_prod = false";
@@ -51,7 +53,7 @@ ResultSet rs = null;
     }
     
     public int pegarIdMat() throws SQLException{
-        String sql = "select lote from materiaprima where nome = '" + Mat_est.getSelectedItem().toString() + "'";
+        String sql = "select lote from materiaprima where lote = '" + Integer.parseInt(Mat_est.getSelectedItem().toString()) + "'";
         try{
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery(sql);
@@ -141,6 +143,7 @@ ResultSet rs = null;
             JOptionPane.showMessageDialog(null, ex);
         }
     }
+    
 
     public TelaAddEstoque() throws ClassNotFoundException {
         conexao = Database.conector();
@@ -173,7 +176,7 @@ ResultSet rs = null;
 
         jLabel1.setText("Nome do produto*");
 
-        jLabel2.setText("Matéria-prima*");
+        jLabel2.setText("Lote da Matéria-prima*");
 
         jLabel3.setText("Quantidade do estoque*");
 
@@ -260,7 +263,11 @@ ResultSet rs = null;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja cancelar o cadastro?", "Atenção",JOptionPane.YES_NO_OPTION);
+        if(confirmar==JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "Cadastro cancelado");
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

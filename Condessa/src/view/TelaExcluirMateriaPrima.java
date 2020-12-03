@@ -24,12 +24,12 @@ PreparedStatement pst = null;
 ResultSet rs = null;
 
         public void listarMateriaPrima(){
-            String sql="select nome from materiaprima";
+            String sql="select lote from materiaprima";
             try {
                 pst = conexao.prepareStatement(sql);
                 rs = pst.executeQuery(sql);
                 while(rs.next()){
-                    ex_mp.addItem(rs.getString("nome"));
+                    ex_mp.addItem(""+rs.getInt("lote"));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(TelaAddVenda.class.getName()).log(Level.SEVERE, null, ex);
@@ -37,7 +37,7 @@ ResultSet rs = null;
         }
         
         public int pegarIdMateriaPrima() throws SQLException{
-        String sql = "select lote from materiaprima where nome = '" + ex_mp.getSelectedItem().toString() + "'";
+        String sql = "select lote from materiaprima where lote = '" + Integer.parseInt(ex_mp.getSelectedItem().toString()) + "'";
         try{
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery(sql);
@@ -60,6 +60,7 @@ ResultSet rs = null;
                 ex_qtd_mp.setText(""+rs.getInt("m.quantidade"));
                 ex_forn_mp.setText(rs.getString("f.nome"));
                 ex_lote_mp.setText(""+rs.getInt("m.lote"));
+                jLabel6.setText(""+rs.getDouble("preco"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TelaEditarProduto.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,10 +73,10 @@ ResultSet rs = null;
                 pst = conexao.prepareStatement(sql);
             //executando o banco
                 pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Materia Prima deletada com sucesso");
+                JOptionPane.showMessageDialog(null, "Materia-Prima deletada com sucesso");
                 this.dispose();
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Materia Prima não pode ser excluída");
+                JOptionPane.showMessageDialog(null, "Materia-Prima não pode ser excluída");
                 Logger.getLogger(TelaAddVenda.class.getName()).log(Level.SEVERE, null, ex);
             } 
     }
@@ -110,6 +111,8 @@ ResultSet rs = null;
         ex_lote_mp = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         ex_forn_mp = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Excluir Materia Prima");
@@ -160,6 +163,10 @@ ResultSet rs = null;
 
         ex_forn_mp.setText("-");
 
+        jLabel5.setText("Preço:");
+
+        jLabel6.setText("-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,10 +181,6 @@ ResultSet rs = null;
                         .addGap(54, 54, 54))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ex_forn_mp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel7)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
@@ -190,14 +193,22 @@ ResultSet rs = null;
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ex_qtd_mp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(ex_qtd_mp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jButton1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButton2))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ex_forn_mp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap(17, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,26 +223,30 @@ ResultSet rs = null;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(ex_nome_mp))
-                .addGap(36, 36, 36)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(ex_qtd_mp))
-                .addGap(38, 38, 38)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ex_forn_mp))
-                .addGap(39, 39, 39)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(ex_lote_mp))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(39, 39, 39))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(339, 432));
+        setSize(new java.awt.Dimension(339, 445));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -319,6 +334,8 @@ ResultSet rs = null;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

@@ -130,18 +130,18 @@ boolean clicou = false;
         Ed_cli = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        ed_data = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         ed_Bai_cli = new javax.swing.JLabel();
         ed_Rua_cli = new javax.swing.JLabel();
         ed_Cid_cli = new javax.swing.JLabel();
-        ed_tel = new javax.swing.JFormattedTextField();
         ed_cpf = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        ed_tel = new javax.swing.JTextField();
+        ed_data = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton2.setText("Editar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +150,7 @@ boolean clicou = false;
             }
         });
 
-        jLabel6.setText("Número");
+        jLabel6.setText("Número*");
 
         ed_nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +158,7 @@ boolean clicou = false;
             }
         });
 
-        jLabel1.setText("Nome");
+        jLabel1.setText("Nome*");
 
         jLabel2.setText("CPF                                           Apenas números");
 
@@ -179,7 +179,7 @@ boolean clicou = false;
             }
         });
 
-        jLabel5.setText("CEP");
+        jLabel5.setText("CEP*");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Escolha o cliente para editar");
@@ -190,12 +190,6 @@ boolean clicou = false;
                 jButton3ActionPerformed(evt);
             }
         });
-
-        try {
-            ed_data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         jLabel8.setText("Rua:");
 
@@ -208,12 +202,6 @@ boolean clicou = false;
         ed_Rua_cli.setText("-");
 
         ed_Cid_cli.setText("-");
-
-        try {
-            ed_tel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,27 +222,25 @@ boolean clicou = false;
                             .addComponent(jLabel10)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ed_nome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                                            .addComponent(ed_cep, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ed_tel))
-                                        .addGap(30, 30, 30))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(ed_Rua_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)))
+                                    .addComponent(ed_Rua_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(ed_tel, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ed_nome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                                        .addComponent(ed_cep, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ed_num, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ed_data, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ed_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel9)
-                                    .addComponent(ed_Bai_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(ed_Bai_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(ed_data, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ed_cpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(Ed_cli, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -325,8 +311,7 @@ boolean clicou = false;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    if(ed_tel.getText().equals("(  )      -    ") || ed_nome.getText().equals("") || ed_cpf.getText().equals("  .   .   -  ")
-       || ed_data.getText().equals("  /  /    ") || ed_num.getText().isEmpty() || ed_cep.getText().isEmpty()){
+    if(ed_nome.getText().equals("") || ed_num.getText().isEmpty() || ed_cep.getText().isEmpty()){
         JOptionPane.showMessageDialog(null, "Preencha os campos corretamente");
     }else{
         try{
@@ -427,10 +412,10 @@ boolean clicou = false;
     private javax.swing.JLabel ed_Rua_cli;
     private javax.swing.JTextField ed_cep;
     private javax.swing.JTextField ed_cpf;
-    private javax.swing.JFormattedTextField ed_data;
+    private javax.swing.JTextField ed_data;
     private javax.swing.JTextField ed_nome;
     private javax.swing.JTextField ed_num;
-    private javax.swing.JFormattedTextField ed_tel;
+    private javax.swing.JTextField ed_tel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

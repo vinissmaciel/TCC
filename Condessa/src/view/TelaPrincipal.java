@@ -59,7 +59,7 @@ ResultSet rs = null;
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        Finanças = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Controle de estoque e vendas Condessa");
@@ -163,10 +163,15 @@ ResultSet rs = null;
         });
         jMenu2.add(jMenuItem10);
 
-        jMenuBar1.add(jMenu2);
+        Finanças.setText("Finanças");
+        Finanças.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FinançasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(Finanças);
 
-        jMenu3.setText("Ajuda");
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -313,6 +318,18 @@ String src = "C:\\Users\\Vinícius\\Documents\\GitHub\\TCC\\Condessa\\Relatório
         view.setVisible(true);  
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void FinançasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinançasActionPerformed
+        String src = "C:\\Users\\Vinícius\\Documents\\GitHub\\TCC\\Condessa\\Relatórios\\Relatório de financas.jasper";
+        JasperPrint jaspertprint = null;
+    try {
+        jaspertprint = JasperFillManager.fillReport(src,null,conexao);
+    } catch (JRException ex) {
+        System.out.println("erro");
+    }
+        JasperViewer view = new JasperViewer(jaspertprint, false);
+        view.setVisible(true);  
+    }//GEN-LAST:event_FinançasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -353,12 +370,12 @@ String src = "C:\\Users\\Vinícius\\Documents\\GitHub\\TCC\\Condessa\\Relatório
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Finanças;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;

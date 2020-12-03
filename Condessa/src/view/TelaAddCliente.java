@@ -44,14 +44,35 @@ ResultSet rs = null;
             pst = conexao.prepareStatement(sql);
             //setando(colocando) os dados no banco
             pst.setString(1, Nome_cli.getText());
-            pst.setString(2, Tel_cli.getText());
+            
+            if(Tel_cli.getText().equals("(  )      -    ")){
+                pst.setString(2, "Sem Telefone");
+            }else{
+                pst.setString(2, Tel_cli.getText());
+            }
+            
             pst.setString(3, Bai_cli.getText());
             pst.setString(4, Cid_cli.getText());
             pst.setString(5, Rua_cli.getText());
             pst.setInt(6, Integer.parseInt(Num_cli.getText()));
             pst.setInt(7, Integer.parseInt(Cep_cli.getText()));
-            pst.setString(8, Cpf_cli.getText());
-            pst.setString(9, Data_cli.getText());
+            
+            if(Cpf_cli.getText().isEmpty()){
+                pst.setString(8, "Sem CPF");
+            }else{
+                if(Cpf_cli.getText().length() != 11){
+                    JOptionPane.showMessageDialog(null, "Verifique o CPF digitado");
+                }else{
+                    pst.setString(8, Cpf_cli.getText());
+                }
+                
+            }
+            
+            if(Data_cli.getText().equals("  /  /    ")){
+                pst.setString(9, "Sem Data de nascimento");
+            }else{
+                pst.setString(9, Data_cli.getText());
+            }
             //executando o banco
             pst.executeUpdate();
             //mensagem para o usuario
@@ -61,7 +82,7 @@ ResultSet rs = null;
             conexao.close();
             this.dispose();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
+            System.out.println(ex);
         }
         }else{
             JOptionPane.showMessageDialog(null, "Cliente não Cadastrado, verifique os dados digitados");
@@ -96,9 +117,9 @@ ResultSet rs = null;
         Data_cli = new javax.swing.JFormattedTextField();
         Tel_cli = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        Cpf_cli = new javax.swing.JFormattedTextField();
+        Cpf_cli = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar cliente");
 
         jLabel1.setText("Nome*");
@@ -168,11 +189,11 @@ ResultSet rs = null;
 
         jLabel2.setText("CPF                                                Apenas números");
 
-        try {
-            Cpf_cli.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        Cpf_cli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Cpf_cliKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,6 +345,12 @@ ResultSet rs = null;
         // TODO add your handling code here:
     }//GEN-LAST:event_Cep_cliActionPerformed
 
+    private void Cpf_cliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Cpf_cliKeyReleased
+        if(Cpf_cli.getText().length() == 11){
+            JOptionPane.showMessageDialog(null, "CPF digitado");
+        }
+    }//GEN-LAST:event_Cpf_cliKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -367,7 +394,7 @@ ResultSet rs = null;
     private javax.swing.JLabel Bai_cli;
     private javax.swing.JTextField Cep_cli;
     private javax.swing.JLabel Cid_cli;
-    private javax.swing.JFormattedTextField Cpf_cli;
+    private javax.swing.JTextField Cpf_cli;
     private javax.swing.JFormattedTextField Data_cli;
     private javax.swing.JTextField Nome_cli;
     private javax.swing.JTextField Num_cli;

@@ -62,6 +62,16 @@ ResultSet rs = null;
         listarMp();
     }
     
+    public void precomateria(){
+        String sql="call materia()";
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.executeUpdate(sql);
+            } catch (SQLException ex) {
+            Logger.getLogger(TelaAddEstoque.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void adicionar() throws SQLException{
         int id = pegarId();
         String sql = "insert into materiaprima"+
@@ -77,12 +87,14 @@ ResultSet rs = null;
             pst.setDouble(3, Double.parseDouble(jTextField1.getText()));
             pst.setInt(4, id);
             //executando o banco
+            
             pst.executeUpdate();
             //mensagem para o usuario
             JOptionPane.showMessageDialog(null, "Materia-prima Cadastrada");
+            
             //fechando a conexao e o banco
-            pst.close();
-            conexao.close();
+            //pst.close();
+            //conexao.close();
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -109,7 +121,7 @@ ResultSet rs = null;
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Materia Prima");
 
         jLabel3.setText("Quantidade*");
@@ -215,6 +227,7 @@ ResultSet rs = null;
         else{
             try{
                 pegarId();
+                precomateria();
                 this.adicionar();
                 this.dispose();
             }
